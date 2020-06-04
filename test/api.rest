@@ -10,3 +10,7 @@ content-type: application/json
         "black_pct": 0
         }
 }
+
+***
+
+/subscriptions/edf21382-6668-49df-8cf0-1feefef2456c/resourceGroups/pwe-static-app/providers/Microsoft.Web/staticSites/pwe-static-app.
