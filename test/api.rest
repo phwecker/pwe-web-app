@@ -1,0 +1,12 @@
+POST http://localhost:7071/api/setRecipie HTTP/1.1
+content-type: application/json
+
+{
+    "recipie": {
+        "name": "test",
+        "cyan_pct": 0,
+        "magenta_pct": 0,
+        "yellow_pct": 0,
+        "black_pct": 0
+        }
+}
