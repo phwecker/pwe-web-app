@@ -1,7 +1,7 @@
 {
     "routes": [
         {
-            "route": "/api/setRecipie",
+            "route": "/*",
             "allowedRoles": [
                 "authenticated"
             ]
@@ -10,6 +10,16 @@
             "route": "/*",
             "serve": "/index.html",
             "statusCode": 200
+        }
+    ],
+    "platformErrorOverrides": [
+        {
+            "errorType": "NotFound",
+            "serve": "/static/404.html"
+        },
+        {
+            "errorType": "Unauthenticated",
+            "serve": "/static/login.html"
         }
     ]
 }
