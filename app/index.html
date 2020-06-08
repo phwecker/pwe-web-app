@@ -16,56 +16,42 @@
 </head>
 
 <body>
-  <nav id="hdr" class="navbar navbar-expand-sm navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">{{homepage_title}}</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-      aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/.auth/login/facebook">Login</a>
-        </li>
-        <li class="nav-item dropdown">
+  <div id="app">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">{{homepage_title}}</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/.auth/login/facebook">Login</a>
+          </li>
+          <!-- li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">Dropdown</a>
           <div class="dropdown-menu" aria-labelledby="dropdownId">
             <a class="dropdown-item" href="#">Action 1</a>
             <a class="dropdown-item" href="#">Action 2</a>
           </div>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+        </li-->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container-fluid" style="flex-flow: row wrap;">
+      <div class="row">
+        <recipie-swatch v-for="swatch in recipies" v-bind:swatch="swatch" v-bind:in_gramm="in_gramm"
+          v-bind:key="swatch.name"></recipie-swatch>
+      </div>
     </div>
-  </nav>
-
-  <div class="container-fluid">
-    <pre id="recipies"></pre>
   </div>
-
-  <script>
-    (async function () {
-      let response = await fetch("/api/listRecipies");
-      let message = await response.json();
-
-      async function getUserInfo() {
-        const response = await fetch("/.auth/me");
-        const payload = await response.json();
-        const { clientPrincipal } = payload;
-        return clientPrincipal;
-      }
-      console.log(getUserInfo());
-
-      document.querySelector("#recipies").innerHTML = JSON.stringify(message.recipies, '', ' ');
-    })();
-
-  </script>
-
   <script src="index.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -21,6 +21,13 @@ module.exports = async function (context, req) {
                     black_pct: 50
                 },
                 {
+                    name: "test 485c",
+                    cyan_pct: 0,
+                    magenta_pct: 81,
+                    yellow_pct: 87,
+                    black_pct: 15
+                },
+                {
                     name: "test 100",
                     cyan_pct: 100,
                     magenta_pct: 100,
