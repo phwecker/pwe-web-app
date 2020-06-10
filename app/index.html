@@ -39,8 +39,8 @@
         </li-->
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="searchTerm">
+          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" v-on:click="searchSwatch">Search</button>
         </form>
       </div>
     </nav>
@@ -49,6 +49,34 @@
       <div class="row">
         <recipie-swatch v-for="swatch in recipies" v-bind:swatch="swatch" v-bind:in_gramm="in_gramm"
           v-bind:key="swatch.name"></recipie-swatch>
+        <div class="card" style="width: 200px; margin: 5px">
+          <div src="https://via.placeholder.com/200x125.png?text=New+Swatch" class="card-img-top"
+            :style="{backgroundColor: rgb_value, height:'125px'}" alt="...">&nbsp;
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><input id="swatch-input" type="text" v-model="newSwatch.name" style="width: 170px;">
+            </h5>
+            <p class="card-text" style="font-size: 0.7em">
+            <table style="width: 100%; margin-bottom: 10px;">
+              <tr>
+                <td><input id="c-input" type="number" v-model="newSwatch.cyan_pct"
+                    style="font-size: 0.7em; width:40px; background-color: rgb(0, 255, 255)">
+                </td>
+                <td><input id="m-input" type="number" v-model="newSwatch.magenta_pct"
+                    style="font-size: 0.7em; width:40px; background-color: rgb(0255, 0, 255)">
+                </td>
+                <td><input id="y-input" type="number" v-model="newSwatch.yellow_pct"
+                    style="font-size: 0.7em; width:40px; background-color: rgb(255, 255, 0)">
+                </td>
+                <td><input id="k-input" type="number" v-model="newSwatch.black_pct"
+                    style="font-size: 0.7em; width:40px; background-color: rgb(0, 0, 0); color: white;"></td>
+              </tr>
+            </table>
+            <button class="btn btn-primary" v-on:click="addSwatch">Add</button>
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

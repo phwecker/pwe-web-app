@@ -5,7 +5,7 @@ module.exports = async function (context, req) {
         context.res = {
             status: 200,
             body: {
-                message: { code: 0001, text: "recipie saved" }
+                message: { code: 0001, text: "recipie saved - " + JSON.stringify(req.body) }
             }
         };
     }
