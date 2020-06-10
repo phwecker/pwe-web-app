@@ -54,21 +54,22 @@
             :style="{backgroundColor: rgb_value, height:'125px'}" alt="...">&nbsp;
           </div>
           <div class="card-body">
-            <h5 class="card-title"><input id="swatch-input" type="text" v-model="newSwatch.name" style="width: 170px;">
+            <h5 class="card-title"><input id="swatch-input" class="form-control form-control-md" type="text"
+                v-model="newSwatch.name" style="width: 170px;">
             </h5>
             <p class="card-text" style="font-size: 0.7em">
             <table style="width: 100%; margin-bottom: 10px;">
               <tr>
-                <td><input id="c-input" type="number" v-model="newSwatch.cyan_pct"
+                <td><input id="c-input" class="form-control form-control-sm" type="text" v-model="newSwatch.cyan_pct"
                     style="font-size: 0.7em; width:40px; background-color: rgb(0, 255, 255)">
                 </td>
-                <td><input id="m-input" type="number" v-model="newSwatch.magenta_pct"
+                <td><input id="m-input" class="form-control form-control-sm" type="text" v-model="newSwatch.magenta_pct"
                     style="font-size: 0.7em; width:40px; background-color: rgb(0255, 0, 255)">
                 </td>
-                <td><input id="y-input" type="number" v-model="newSwatch.yellow_pct"
+                <td><input id="y-input" class="form-control form-control-sm" t ype="text" v-model="newSwatch.yellow_pct"
                     style="font-size: 0.7em; width:40px; background-color: rgb(255, 255, 0)">
                 </td>
-                <td><input id="k-input" type="number" v-model="newSwatch.black_pct"
+                <td><input id="k-input" class="form-control form-control-sm" type="text" v-model="newSwatch.black_pct"
                     style="font-size: 0.7em; width:40px; background-color: rgb(0, 0, 0); color: white;"></td>
               </tr>
             </table>
