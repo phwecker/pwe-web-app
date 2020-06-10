@@ -78,16 +78,22 @@ var swatch_list = {};
                 alert('searach: ' + this.searchTerm)
             },
             addSwatch: async function () {
-                let newSwatch = { recipie: this.newSwatch }
 
-                alert(JSON.stringify(newSwatch, ' ', 1))
+                alert(JSON.stringify(this.newSwatch, ' ', 1))
                 let response = await fetch("/api/setRecipie",
                     {
                         method: "POST",
-                        body: JSON.stringify(newSwatch)
+                        body: JSON.stringify(this.newSwatch)
                     }
                 );
+
                 let message = await response.json();
+
+                console.log(JSON.stringify(this.newSwatch));
+                localSwatch = this.newSwatch;
+                localSwatch.rgb_value = this.rgb_value;
+                this.recipies.push(localSwatch);
+
                 console.log(message.message.text)
             }
         },
