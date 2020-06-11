@@ -12,5 +12,3 @@ content-type: application/json
 }
 
 ###
-
-POST https://calm-sea-0d8b2d803.azurestaticapps.net/api/setRecipie
