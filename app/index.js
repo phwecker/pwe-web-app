@@ -1,17 +1,31 @@
+// const { userInfo } = require("os");
+
 var swatch_list = {};
 
 (async function () {
     let response = await fetch("/api/recipie");
     let message = await response.json();
+    swatch_list = message.recipies;
 
     async function getUserInfo() {
-        const response = await fetch("/.auth/me");
-        const payload = await response.json();
-        const { clientPrincipal } = payload;
-        return clientPrincipal;
+        var response = {}
+        var payload = {
+            "identityProvider": "",
+            "userId": "",
+            "userDetails": "",
+            "userRoles": []
+        };
+        try {
+            response = await fetch("/.auth/me");
+            payload = await response.json();
+        } catch (e) {
+            console.log("ERROR")
+            console.log(e)
+        }
+        console.log(payload)
+        return payload;
     }
-    // console.log(await getUserInfo());
-    swatch_list = message.recipies;
+    userInfo = await getUserInfo();
 
     Vue.component('recipie-swatch', {
         props: ['swatch', 'in_gramm', 'delete_swatch', 'index',],
@@ -38,6 +52,7 @@ var swatch_list = {};
     var bdy = new Vue({
         el: '#app',
         data: {
+            user_info: userInfo,
             recipies: swatch_list,
             homepage_title: 'My Paint Mixer',
             newSwatch: {
@@ -87,24 +102,6 @@ var swatch_list = {};
             }
         },
         computed: {
-            user_info: async function () {
-                var response = {}
-                var payload = {
-                    "identityProvider": "",
-                    "userId": "",
-                    "userDetails": "",
-                    "userRoles": []
-                };
-                try {
-                    response = await fetch("/.auth/me");
-                    payload = await response.json();
-                } catch (e) {
-                    console.log("ERROR")
-                    console.log(e)
-                }
-                console.log(payload)
-                return JSON.stringify(payload, ' ', 1);
-            },
             rgb_value: function () {
                 c_val = this.newSwatch.cyan_pct / 100;
                 m_val = this.newSwatch.magenta_pct / 100;
