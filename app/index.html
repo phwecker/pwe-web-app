@@ -43,7 +43,11 @@
           <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="searchTerm">
           <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" v-on:click="searchSwatch">Search</button>
         </form>
+
       </div>
+      <span class="navbar-text" style="margin-left: 20px;">
+        {{user_info.userDetails}}
+      </span>
     </nav>
 
     <div class="container-fluid" style="flex-flow: row wrap;">
