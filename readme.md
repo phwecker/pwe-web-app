@@ -1,3 +1,3 @@
-# Vanilla JavaScript App
+# Paint Mixer App
 
-This repo is used as a starter for a _very basic_ HTML web application using no front-end frameworks.
+Sample application for managing Paint Swatches
