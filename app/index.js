@@ -27,7 +27,7 @@ var swatch_list = {};
 
     swatch_list = []
     try {
-        if (userInfo.userRoles.length > 0) {
+        if (userInfo && userInfo.userRoles.length > 0) {
             let response = await fetch("/api/recipie");
             let message = await response.json();
             swatch_list = message.recipies;
