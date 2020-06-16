@@ -16,6 +16,16 @@ var swatch_list = {};
         try {
             response = await fetch("/.auth/me");
             payload = await response.json();
+            if (!payload.clientPrincipal.userRoles)
+                payload = {
+                    clientPrincipal:
+                    {
+                        "identityProvider": "",
+                        "userId": "",
+                        "userDetails": "",
+                        "userRoles": []
+                    }
+                };
         } catch (e) {
             console.log("ERROR")
             console.log(e)
