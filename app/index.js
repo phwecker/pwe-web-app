@@ -5,18 +5,13 @@ var swatch_list = {};
     async function getUserInfo() {
         var response = {}
         var payload = {
-            clientPrincipal:
-            {
-                "identityProvider": "",
-                "userId": "",
-                "userDetails": "",
-                "userRoles": []
+            clientPrincipal: {
             }
         };
         try {
             response = await fetch("/.auth/me");
             payload = await response.json();
-            if (!payload.clientPrincipal.userRoles)
+            if (!payload || !payload.clientPrincipal.userRoles)
                 payload = {
                     clientPrincipal:
                     {
@@ -29,12 +24,21 @@ var swatch_list = {};
         } catch (e) {
             console.log("ERROR")
             console.log(e)
+            payload = {
+                clientPrincipal:
+                {
+                    "identityProvider": "",
+                    "userId": "",
+                    "userDetails": "",
+                    "userRoles": []
+                }
+            };
         }
         console.log(payload)
         return payload.clientPrincipal;
     }
     userInfo = await getUserInfo();
-
+    console.log(userInfo)
     swatch_list = []
     try {
         if (userInfo && userInfo.userRoles.length > 0) {
