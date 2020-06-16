@@ -1,7 +1,7 @@
 var swatch_list = {};
 
 (async function () {
-    let response = await fetch("/api/listRecipies");
+    let response = await fetch("/api/recipie");
     let message = await response.json();
 
     async function getUserInfo() {
@@ -61,7 +61,7 @@ var swatch_list = {};
             addSwatch: async function () {
 
                 // alert(JSON.stringify(this.newSwatch, ' ', 1))
-                let response = await fetch("/api/setRecipie",
+                let response = await fetch("/api/recipie",
                     {
                         method: "POST",
                         body: JSON.stringify(this.newSwatch)
