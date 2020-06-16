@@ -10,10 +10,13 @@ var swatch_list = {};
     async function getUserInfo() {
         var response = {}
         var payload = {
-            "identityProvider": "",
-            "userId": "",
-            "userDetails": "",
-            "userRoles": []
+            clientPrincipal:
+            {
+                "identityProvider": "",
+                "userId": "",
+                "userDetails": "",
+                "userRoles": []
+            }
         };
         try {
             response = await fetch("/.auth/me");
@@ -23,7 +26,7 @@ var swatch_list = {};
             console.log(e)
         }
         console.log(payload)
-        return payload;
+        return payload.clientPrincipal;
     }
     userInfo = await getUserInfo();
 

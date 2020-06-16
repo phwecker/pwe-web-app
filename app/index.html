@@ -47,8 +47,8 @@
     </nav>
 
     <div class="container-fluid" style="flex-flow: row wrap;">
-      <pre>{{ user_info }}</pre>
-      <div class="row">
+      <!--pre>{{ user_info }}</pre-->
+      <div class="row" v-if="user_info.userRoles.indexOf('authenticated') >= 0">
         <recipie-swatch v-for="(swatch, index) in recipies" v-bind:swatch="swatch" v-bind:index="index"
           v-bind:in_gramm="in_gramm" v-bind:delete_swatch="delete_swatch" v-bind:key="index" inline-template>
           <div class="card" style="width: 200px; margin: 5px">
