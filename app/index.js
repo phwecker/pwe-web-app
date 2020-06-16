@@ -103,7 +103,7 @@ var swatch_list = {};
                     console.log(e)
                 }
                 console.log(payload)
-                return payload;
+                return JSON.stringify(payload, ' ', 1);
             },
             rgb_value: function () {
                 c_val = this.newSwatch.cyan_pct / 100;

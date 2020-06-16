@@ -47,7 +47,7 @@
     </nav>
 
     <div class="container-fluid" style="flex-flow: row wrap;">
-      <pre>{{ JSON.stringify(user_info,' ',1) }}</pre>
+      <pre>{{ user_info }}</pre>
       <div class="row">
         <recipie-swatch v-for="(swatch, index) in recipies" v-bind:swatch="swatch" v-bind:index="index"
           v-bind:in_gramm="in_gramm" v-bind:delete_swatch="delete_swatch" v-bind:key="index" inline-template>
