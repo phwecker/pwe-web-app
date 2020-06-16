@@ -12,10 +12,9 @@ var swatch_list = {};
     }
     // console.log(await getUserInfo());
     swatch_list = message.recipies;
-    console.log(JSON.stringify(swatch_list, '', ' '));
 
     Vue.component('recipie-swatch', {
-        props: ['swatch', 'in_gramm', 'delete_swatch', 'index'],
+        props: ['swatch', 'in_gramm', 'delete_swatch', 'index',],
         template: '#recipie-swatch',
     })
 
@@ -34,7 +33,6 @@ var swatch_list = {};
             ('0' + Math.trunc(g_val).toString(16)).substr(-2) +
             ('0' + Math.trunc(b_val).toString(16)).substr(-2);
 
-        console.log(swatch_list[i])
     }
 
     var bdy = new Vue({
@@ -70,17 +68,14 @@ var swatch_list = {};
 
                 let message = await response.json();
 
-                console.log(JSON.stringify(this.newSwatch));
                 localSwatch = this.newSwatch;
                 localSwatch.rgb_value = this.rgb_value;
 
                 this.recipies.push(localSwatch);
 
-                console.log(message.message.text)
             },
             delete_swatch: async function (index) {
                 swatchId = this.recipies[index].name;
-                alert(swatchId)
                 let response = await fetch("/api/recipie/" + swatchId,
                     {
                         method: "DELETE"
@@ -92,6 +87,24 @@ var swatch_list = {};
             }
         },
         computed: {
+            user_info: async function () {
+                var response = {}
+                var payload = {
+                    "identityProvider": "",
+                    "userId": "",
+                    "userDetails": "",
+                    "userRoles": []
+                };
+                try {
+                    response = await fetch("/.auth/me");
+                    payload = await response.json();
+                } catch (e) {
+                    console.log("ERROR")
+                    console.log(e)
+                }
+                console.log(payload)
+                return payload;
+            },
             rgb_value: function () {
                 c_val = this.newSwatch.cyan_pct / 100;
                 m_val = this.newSwatch.magenta_pct / 100;
@@ -105,8 +118,6 @@ var swatch_list = {};
                 rgb_col = '#' + ('0' + Math.trunc(r_val).toString(16)).substr(-2) +
                     ('0' + Math.trunc(g_val).toString(16)).substr(-2) +
                     ('0' + Math.trunc(b_val).toString(16)).substr(-2);
-
-                console.log(rgb_col);
 
                 return rgb_col;
             }
