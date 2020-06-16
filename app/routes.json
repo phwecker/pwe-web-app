@@ -7,6 +7,12 @@
             ]
         },
         {
+            "route": "/api/recipie",
+            "allowedRoles": [
+                "authenticated"
+            ]
+        },
+        {
             "route": "/*",
             "serve": "/index.html",
             "statusCode": 200
