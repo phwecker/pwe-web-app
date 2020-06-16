@@ -1,11 +1,6 @@
-// const { userInfo } = require("os");
-
 var swatch_list = {};
 
 (async function () {
-    let response = await fetch("/api/recipie");
-    let message = await response.json();
-    swatch_list = message.recipies;
 
     async function getUserInfo() {
         var response = {}
@@ -29,6 +24,17 @@ var swatch_list = {};
         return payload.clientPrincipal;
     }
     userInfo = await getUserInfo();
+
+    swatch_list = []
+    try {
+        if (userInfo.userRoles.length > 0) {
+            let response = await fetch("/api/recipie");
+            let message = await response.json();
+            swatch_list = message.recipies;
+        }
+    } catch (e) {
+        swatch_list = []
+    }
 
     Vue.component('recipie-swatch', {
         props: ['swatch', 'in_gramm', 'delete_swatch', 'index',],

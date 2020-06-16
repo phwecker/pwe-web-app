@@ -28,7 +28,11 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/.auth/login/facebook">Login</a>
+            <a class="nav-link" href="/.auth/login/facebook"
+              v-if="user_info.userRoles.indexOf('authenticated') < 0">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/.auth/logout" v-if="user_info.userRoles.indexOf('authenticated') >= 0">Logout</a>
           </li>
           <!-- li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
